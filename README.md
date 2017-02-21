@@ -1,1 +1,1 @@
-# game-frontend
+# Science Adventurers front-end
