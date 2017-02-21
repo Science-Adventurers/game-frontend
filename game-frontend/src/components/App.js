@@ -3,6 +3,7 @@ import logo from '../../public/assets/logo.png';
 import '../App.css';
 import channel from '../connection.js';
 import Header from './Header.js';
+import { Link } from 'react-router'
 
 class App extends Component {
   constructor(props){
@@ -46,7 +47,9 @@ class App extends Component {
         </ul>
         <label>Name:</label>
         <input type="text" name="team-name" onChange={ (e) => this.setState({name: e.target.value})} value={ this.state.name }/>
-        <button>Start challenge</button>
+        <Link to='/start'>
+          <button>Start challenge</button>
+        </Link>
       </div>
     );
   }
