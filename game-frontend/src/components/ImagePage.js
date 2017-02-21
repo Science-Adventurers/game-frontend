@@ -3,7 +3,7 @@ import logo from '../../public/assets/logo.png';
 import '../App.css';
 import channel from '../connection.js';
 import Header from './Header.js';
-import { Link } from 'react-router';
+import { Link } from 'react-router'
 
 class App extends Component {
   constructor(props){
@@ -21,10 +21,13 @@ class App extends Component {
     return (
       <div className="App">
         <Header title={"title"} />
-        <Link to='/image'>
-          <button>Start challenge!</button>
+        <img src={ logo } alt="sg"/>
+        <p className="App-intro">
+          Can you find this?
+        </p>
+        <Link to='/question'>
+          <button>Found it!</button>
         </Link>
-        <button>Leaderboard</button>
       </div>
     );
   }
