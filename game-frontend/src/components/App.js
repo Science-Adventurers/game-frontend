@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import logo from '../public/assets/logo.png';
-import './App.css';
-import channel from './connection.js';
+import logo from '../../public/assets/logo.png';
+import '../App.css';
+import channel from '../connection.js';
+import Header from './Header.js';
 
 class App extends Component {
   constructor(props){
@@ -18,6 +19,7 @@ class App extends Component {
     console.log(this.state);
     return (
       <div className="App">
+        <Header title={"title"} />
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Science Adventurers</h2>
