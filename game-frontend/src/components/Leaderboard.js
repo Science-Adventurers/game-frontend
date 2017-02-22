@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import channel from '../connection.js';
 import Header from './Header.js';
 
+
 class Leaderboard extends Component {
   constructor(props){
     super(props);
