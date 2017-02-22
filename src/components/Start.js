@@ -24,9 +24,6 @@ class App extends Component {
         <Link className="page-link" to='/image'>
         <button className="start-button">Start Challenge!</button>
         </Link>
-        <Link className="page-link" to='/start'>
-          <button className="big-button">Leaderboard</button>
-        </Link>
       </div>
     );
   }
