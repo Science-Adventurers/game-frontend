@@ -19,6 +19,9 @@ We have designed this MVP with this primary user story:<br>
 'As a young person in the digital age, I want an app to explore a museum so that I can have fun while exploring.'
 
 ### What?
+- frontend: react
+- backend: elixir
+- connection: via websocket
 
 ### Why?
 We want to increase the engagement, fun and learning of visitors to the Science Museums by providing a web app game which can be used on mobile phones. 
