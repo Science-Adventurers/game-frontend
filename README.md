@@ -19,5 +19,8 @@ We have designed this MVP with this primary user story:<br>
 'As a young person in the digital age, I want an app to explore a museum so that I can have fun while exploring.'
 
 ### What?
+- frontend: React
+- backend: Elixir
+- communication: via websocket
 
 ### Why?
