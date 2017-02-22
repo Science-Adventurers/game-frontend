@@ -3,7 +3,7 @@ import logo from '../../public/assets/logo.png';
 import '../App.css';
 import channel from '../connection.js';
 import Header from './Header.js';
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 
 
 class App extends Component {
@@ -12,14 +12,28 @@ class App extends Component {
     this.state = {
       name: '',
       adventure: '',
-      question:undefined,
+      current_question:undefined,
+      remaining_questions:undefined,
       isQuestionShowing: false,
-      questionNum: 0
+      elapsed_time:undefined,
+      answer: undefined
     };
   }
+
+  componentDidMount(){
+    channel.join()
+      .receive("ok", resp => {
+        channel.push("start-game", {category: "Space Technology"})
+          .receive("ok", resp => { this.setState({current_question: resp.current_question, remaining_questions: resp.remaining_questions}) })
+          .receive("error",resp => {console.log(resp)})
+       })
+      .receive("error", resp => { console.log("Unable to join", resp) })
+  }
+
   selectAdventure(adventure){
      this.setState({adventure})
   }
+
   generateQuestion(topic,name){
     name=name.split(',')[0];
     if(topic=="who"){
@@ -30,41 +44,51 @@ class App extends Component {
       return `Where was the ${name} built?`
     }
   }
-  componentDidMount(){
-    channel.join()
-      .receive("ok", resp => {
-        channel.push("get-random-question", {category: "Space Technology"})
-          .receive("ok", resp => { this.setState({question:resp}) })
-          .receive("error",resp => {console.log(resp)})
-       })
-      .receive("error", resp => { console.log("Unable to join", resp) })
+
+  selectAnswer(answer){
+     this.setState({answer})
   }
+
+  submitAnswer() {
+    this.setState({
+      isQuestionShowing:!this.state.isQuestionShowing,
+      elapsed_time:Date.now()-this.state.timeTaken
+    })
+    // send elapsed_time and answer to socket....
+  }
+
   render() {
     console.log(this.state);
 
-    let question = this.state.question && this.state.question.question;
-    let displayOptions = question && question.options.map( option => {
+    let question = this.state.current_question && this.state.current_question;
+    console.log(question)
+    let displayOptions = question && question.options.map(option => {
       return (
         <li onClick={ () => this.selectAnswer(option) } key={option}>
           {option}
         </li>
       )
-    } )
+    })
     return ( <div>
 
-      {!this.state.isQuestionShowing && this.state.question &&
+      {
+        !this.state.isQuestionShowing && this.state.remaining_questions && this.state.remaining_questions.length === 0 &&
+        browserHistory.push('/leaderboard')
+      }
+      {
+        !this.state.isQuestionShowing && this.state.current_question &&
         <div className="App">
           <Header title={"title"} />
           <img src={ question.image_url } alt="sg"/>
           <p className="App-intro">
             Can you find this?
           </p>
-            <button onClick={(e)=>{this.setState({isQuestionShowing:!this.state.isQuestionShowing})}} >Found it!</button>
+            <button onClick={()=>{this.setState({isQuestionShowing:!this.state.isQuestionShowing,elapsed_time:Date.now()})}} >Found it!</button>
         </div>
       }
 
       {
-        this.state.isQuestionShowing && this.state.question &&
+        this.state.isQuestionShowing && this.state.current_question &&
         <div>
           <Header title={"title"} />
           <h3>{this.generateQuestion(question.topic, question.name)}</h3>
@@ -72,7 +96,7 @@ class App extends Component {
           <ul className="option-list">
             {displayOptions}
           </ul>
-          <button onClick={(e)=>{this.setState({isQuestionShowing:!this.state.isQuestionShowing})}}>Submit</button>
+          <button onClick={()=> this.submitAnswer() }>Submit</button>
         </div>
       }
       </div>
