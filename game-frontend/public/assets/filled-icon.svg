@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Filled Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Filled-Icon">
+            <circle id="Oval-2" fill-opacity="0.598052536" fill="#1F4191" cx="30" cy="30" r="30"></circle>
+            <circle id="Oval-2" fill-opacity="0.598052536" fill="#1F4191" cx="30" cy="30" r="30"></circle>
+            <path d="M24.8669261,37.0617564 L17.4996032,29.6944335 C16.9268143,29.1216446 16.0043272,29.1269545 15.4320794,29.6992023 C14.855842,30.2754397 14.8576965,31.1971121 15.4273106,31.7667261 L23.7260187,40.0654343 C23.7984347,40.1378503 23.8764403,40.2010261 23.9586208,40.2549842 C24.5373135,40.7272309 25.385422,40.6878458 25.9249567,40.1483111 L44.5641734,21.5090944 C45.1441454,20.9291224 45.1421297,20.0033411 44.5698819,19.4310932 C43.9936445,18.8548558 43.0672813,18.8614012 42.4918808,19.4368018 L24.8669261,37.0617564 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+        </g>
+    </g>
+</svg>
