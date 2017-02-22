@@ -1,5 +1,13 @@
+* {
+  font-family: 'Josefin Sans', sans-serif;
+  line-height: 1.25em;
+  letter-spacing: 0.05em;
+}
+
 .App {
   text-align: center;
+  background-color: lightgrey;
+  min-height: 667px;
 }
 
 .App-logo {
@@ -19,5 +27,90 @@
 }
 
 .challenge-list {
+  width: 100%;
   list-style: none;
+}
+
+.list-container {
+  position: absolute;
+  left: -16px;
+  top: 200px;
+}
+
+.header {
+  background-image: url(../public/assets/space-background.svg);
+  background-repeat: no-repeat;
+  height: 180px;
+  color: white;
+}
+
+.header__title {
+  margin: 0;
+  padding-top: 10px;
+  font-size: 1.4em;
+}
+
+.big-button {
+  display: block;
+  font-size: 2.5em;
+  border: 1px;
+  background-color: #1F4191;
+  border-radius: 50px;
+  width: 90%;
+  color: white;
+  padding-top: 10px;
+  margin: 0 auto;
+}
+
+.start-button {
+  display: block;
+  font-size: 2.5em;
+  border: 1px;
+  background-color: #1F4191;
+  border-radius: 50%;
+  width: 240px;
+  height: 240px;
+  color: white;
+  margin: 0 auto 100px auto;
+}
+
+.page-link {
+  text-decoration: none;
+}
+
+.root {
+  max-width: 380px;
+}
+
+.text-input {
+  background-color: white;
+  width: 75%;
+  height: 25px;
+  font-size: 1em;
+  margin-bottom: 30px;
+  text-align: center;
+  padding-top: 4px;
+}
+
+.main-title {
+  margin-top: 0px;
+  padding-top: 30px;
+}
+
+.float-left {
+  float: left;
+}
+
+.icons {
+  margin: 2px;
+}
+
+.name-input {
+  margin-top: 300px;
+}
+
+@media (min-width: 500px) {
+  .root {
+    margin: 50px auto;
+  }
 }
