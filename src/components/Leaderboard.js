@@ -18,9 +18,9 @@ class Leaderboard extends Component {
         <Header title={"title"} />
         <h3 className="question">Congratualations</h3>
         <h5 className="final-score">{score}</h5>
-        <Link to="/" className="big-button">
+        <button onClick={ () => window.location.href = '/'} className="big-button">
           Home
-        </Link>
+        </button>
 
 
       </div>
