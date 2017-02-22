@@ -15,7 +15,7 @@ Team:
 ### Who?
 Our app is created for children, young people and fun-loving adults who are visting the science museum.
 
-We have designed this MVP with this primary user story:
+We have designed this MVP with this primary user story:<br>
 'As a young person in the digital age, I want an app to explore a museum so that I can have fun while exploring.'
 
 ### What?
