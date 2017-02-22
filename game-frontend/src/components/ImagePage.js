@@ -79,11 +79,13 @@ class App extends Component {
         !this.state.isQuestionShowing && this.state.current_question &&
         <div className="App">
           <Header title={"title"} />
-          <img src={ question.image_url } alt="sg"/>
           <p className="App-intro">
             Can you find this?
           </p>
-            <button onClick={()=>{this.setState({isQuestionShowing:!this.state.isQuestionShowing,elapsed_time:Date.now()})}} >Found it!</button>
+          <img className="api-image" src={ question.image_url } alt="sg"/>
+          <Link className="page-link" to='/question'>
+            <button className="big-button" onClick={()=>{this.setState({isQuestionShowing:!this.state.isQuestionShowing,elapsed_time:Date.now()})}}>Found it!</button>
+          </Link>
         </div>
       }
 
