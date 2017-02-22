@@ -16,15 +16,23 @@ class App extends Component {
       remaining_questions:undefined,
       isQuestionShowing: false,
       elapsed_time:undefined,
-      answer: undefined
+      answer: undefined,
+      score: undefined
     };
   }
 
   componentDidMount(){
     channel.join()
       .receive("ok", resp => {
-        channel.push("start-game", {category: "Space Technology"})
-          .receive("ok", resp => { this.setState({current_question: resp.current_question, remaining_questions: resp.remaining_questions}) })
+        channel.push("start-game", { category: "Mathematics" })
+          .receive("ok", resp => {
+            console.log(resp);
+            if (resp.type === 'next-round') {
+              this.setState({current_question: resp.current_question, remaining_questions: resp.remaining_questions})
+            } else {
+              this.setState({score: resp.score})
+            }
+          })
           .receive("error",resp => {console.log(resp)})
        })
       .receive("error", resp => { console.log("Unable to join", resp) })
@@ -54,6 +62,10 @@ class App extends Component {
       isQuestionShowing:!this.state.isQuestionShowing,
       elapsed_time:Date.now()-this.state.timeTaken
     })
+
+    channel.push('send-answer', {elapsed_time: this.state.elapsed_time, answer: this.state.answer})
+      .receive("ok", resp => { this.setState({current_question: resp.current_question, remaining_questions: resp.remaining_questions}) })
+      .receive("error",resp => {console.log(resp)})
     // send elapsed_time and answer to socket....
   }
 
@@ -72,8 +84,13 @@ class App extends Component {
     return ( <div>
 
       {
-        !this.state.isQuestionShowing && this.state.remaining_questions && this.state.remaining_questions.length === 0 &&
-        browserHistory.push('/leaderboard')
+        this.state.score &&
+        <div>
+          <Header title={"title"} />
+          <h3>Congratulations</h3>
+          <h5>{this.state.score}</h5>
+          <Link to='/'>Home</Link>
+        </div>
       }
       {
         !this.state.isQuestionShowing && this.state.current_question &&
@@ -89,7 +106,7 @@ class App extends Component {
 
       {
         this.state.isQuestionShowing && this.state.current_question &&
-        <div>
+        <div className="App">
           <Header title={"title"} />
           <h3>{this.generateQuestion(question.topic, question.name)}</h3>
           <img src={question.image_url} alt="sg"/>

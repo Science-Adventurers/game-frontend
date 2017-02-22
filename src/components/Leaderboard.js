@@ -15,6 +15,16 @@ class Leaderboard extends Component {
     };
   }
 
+  componentDidMount(){
+    channel.join()
+      .receive("ok", resp => {
+        channel.push("get-score")
+          .receive("ok", resp => { this.setState({score: resp.score }) })
+          .receive("error",resp => {console.log(resp)})
+       })
+      .receive("error", resp => { console.log("Unable to join", resp) })
+  }
+
   render() {
     console.log(this.state);
     return (
