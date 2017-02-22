@@ -21,10 +21,12 @@ class App extends Component {
     return (
       <div className="App">
         <Header title={"title"} />
-        <Link to='/image'>
-          <button>Start challenge!</button>
+        <Link className="page-link" to='/image'>
+        <button className="start-button">Start Challenge!</button>
         </Link>
-        <button>Leaderboard</button>
+        <Link className="page-link" to='/start'>
+          <button className="big-button">Leaderboard</button>
+        </Link>
       </div>
     );
   }
