@@ -4,7 +4,7 @@ let socket = new Socket("ws://smhack-game-api.herokuapp.com/socket", {name: "Sup
 
 socket.connect()
 
-let channel = socket.channel("quiz", {})
+let channel = socket.channel("quiz", {player_name: "Peter"})
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
