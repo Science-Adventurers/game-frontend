@@ -4,7 +4,7 @@ let socket = new Socket("ws://smhack-game-api.herokuapp.com/socket", {name: "Sup
 
 socket.connect()
 
-let channel = socket.channel("quiz", {player_name:"Nori"})
+let channel = socket.channel("quiz", {player_name:"Peter"})
 
 
 export default channel;
