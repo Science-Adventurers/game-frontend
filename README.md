@@ -13,10 +13,10 @@ Team:
 * [Peter Rhodes](https://github.com/denesnori)
 
 ### Who?
-Our app is created for children, young people and fun seeking adults who are visting the science museum.
+Our app is created for children, young people and fun-loving adults who are visting the science museum.
 
 We have designed this MVP with this primary user story:
-As a young person in the digital age, I want an app to explore a museum so that I can have fun while exploring.
+'As a young person in the digital age, I want an app to explore a museum so that I can have fun while exploring.'
 
 ### What?
 
