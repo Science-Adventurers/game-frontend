@@ -13,7 +13,7 @@ const Routes = (props) =>
     <Route path="/" component={ App }/>
     <Route path="/start" component={ Start }/>
     <Route path="/question" component={ Question }/>
-    <Route path="/leaderboard" component={ Leaderboard }/>
+    <Route path="/leaderboard/:score" component={ Leaderboard }/>
     <Route path="/image" component={ ImagePage }/>
   </Router>
 

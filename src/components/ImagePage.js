@@ -4,6 +4,7 @@ import '../App.css';
 import channel from '../connection.js';
 import Header from './Header.js';
 import { Link, browserHistory } from 'react-router'
+import classnames from 'classnames';
 
 
 class App extends Component {
@@ -28,8 +29,9 @@ class App extends Component {
           .receive("ok", resp => {
             console.log(resp);
             if (resp.type === 'next-round') {
-              this.setState({current_question: resp.current_question, remaining_questions: resp.remaining_questions})
+              this.setState({current_question: resp.current_question, remaining_questions: resp.remaining_questions, score: resp.score})
             } else {
+              browserHistory.push(`/leaderboard/${resp.score}`)
               this.setState({score: resp.score})
             }
           })
@@ -64,7 +66,13 @@ class App extends Component {
     })
 
     channel.push('send-answer', {elapsed_time: this.state.elapsed_time, answer: this.state.answer})
-      .receive("ok", resp => { this.setState({current_question: resp.current_question, remaining_questions: resp.remaining_questions}) })
+      .receive("ok", resp => {
+        if (resp.type === 'score') {
+          browserHistory.push(`/leaderboard/${resp.score}`)
+        } else {
+          this.setState({current_question: resp.current_question, remaining_questions: resp.remaining_questions})
+        }
+      })
       .receive("error",resp => {console.log(resp)})
     // send elapsed_time and answer to socket....
   }
@@ -75,8 +83,12 @@ class App extends Component {
     let question = this.state.current_question && this.state.current_question;
     console.log(question)
     let displayOptions = question && question.options.map(option => {
+
+      let optionClasses = classnames("options", {
+        "selected-option": option === this.state.answer
+      });
       return (
-        <li onClick={ () => this.selectAnswer(option) } key={option}>
+        <li className={ optionClasses } onClick={ () => this.selectAnswer(option) } key={option}>
           {option}
         </li>
       )
@@ -85,10 +97,14 @@ class App extends Component {
 
       {
         this.state.score &&
-        <div>
+        <div className="App">
           <Header title={"title"} />
           <h3>Congratulations</h3>
           <h5>{this.state.score}</h5>
+          <h5>{this.state.score}</h5>
+          <h5>{this.state.score}</h5>
+          <h5>{this.state.score}</h5>
+          <p>HELLOOO</p>
           <Link to='/'>Home</Link>
         </div>
       }
@@ -96,13 +112,15 @@ class App extends Component {
         !this.state.isQuestionShowing && this.state.current_question &&
         <div className="App">
           <Header title={"title"} />
-          <p className="App-intro">
+          <p className="question">
             Can you find this?
           </p>
           <img className="api-image" src={ question.image_url } alt="sg"/>
-          <Link className="page-link" to='/question'>
-            <button className="big-button" onClick={()=>{this.setState({isQuestionShowing:!this.state.isQuestionShowing,elapsed_time:Date.now()})}}>Found it!</button>
-          </Link>
+          <button
+            className="big-button"
+            onClick={()=>{this.setState({isQuestionShowing:!this.state.isQuestionShowing,elapsed_time:Date.now()})}}>
+            Found it!
+          </button>
         </div>
       }
 
@@ -110,12 +128,12 @@ class App extends Component {
         this.state.isQuestionShowing && this.state.current_question &&
         <div className="App">
           <Header title={"title"} />
-          <h3>{this.generateQuestion(question.topic, question.name)}</h3>
+          <h3 className="question">{this.generateQuestion(question.topic, question.name)}</h3>
           <img src={question.image_url} alt="sg"/>
           <ul className="option-list">
             {displayOptions}
           </ul>
-          <button onClick={()=> this.submitAnswer() }>Submit</button>
+          <button className="big-button" onClick={()=> this.submitAnswer() }>Submit</button>
         </div>
       }
       </div>
