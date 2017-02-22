@@ -4,10 +4,12 @@
   letter-spacing: 0.05em;
 }
 
+body {
+  background-color: lightgrey;
+}
+
 .App {
   text-align: center;
-  background-color: lightgrey;
-  min-height: 667px;
 }
 
 .App-logo {
@@ -23,24 +25,24 @@
 }
 
 .App-intro {
-  font-size: large;
+  font-size: 1.5em;
 }
 
 .challenge-list {
   width: 100%;
   list-style: none;
+  padding-left: 0;
 }
 
-.list-container {
-  position: absolute;
-  left: -16px;
-  top: 200px;
+.api-image{
+  margin-bottom: 20px;
 }
 
 .header {
   background-image: url(../public/assets/space-background.svg);
   background-repeat: no-repeat;
-  height: 180px;
+  height: 100px;
+  background-size: cover;
   color: white;
 }
 
@@ -71,7 +73,7 @@
   width: 240px;
   height: 240px;
   color: white;
-  margin: 0 auto 100px auto;
+  margin: 80px auto 100px auto;
 }
 
 .page-link {
@@ -79,7 +81,8 @@
 }
 
 .root {
-  max-width: 380px;
+  max-width: 768px;
+  height: 100vh;
 }
 
 .text-input {
@@ -95,6 +98,7 @@
 .main-title {
   margin-top: 0px;
   padding-top: 30px;
+  font-size: 4em;
 }
 
 .float-left {
@@ -105,12 +109,26 @@
   margin: 2px;
 }
 
-.name-input {
-  margin-top: 300px;
+.label {
+  display: block;
 }
 
-@media (min-width: 500px) {
+.list-container {
+  display: block;
+  margin: 0 auto;
+}
+
+.name-input {
+  margin-top: 150px;
+}
+
+.links
+
+@media (min-width: 700px) {
   .root {
+    width: 414px;
+    height: 736px;
+    box-shadow: 0 0 30px grey;
     margin: 50px auto;
   }
 }
